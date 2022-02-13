@@ -1,0 +1,25 @@
+{
+  "name": "psych-hack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pushkarsingh019/Psych-Hack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pushkarsingh019/Psych-Hack/issues"
+  },
+  "homepage": "https://github.com/pushkarsingh019/Psych-Hack#readme",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2"
+  }
+}
