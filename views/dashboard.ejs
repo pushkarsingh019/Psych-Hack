@@ -1,2 +1,12 @@
 <%- include('partials/header') %>
-<h3>Dashboard</h3> 
+<h3>Dashboard</h3>
+<a href="/compose">New Entry</a>
+<br>
+<% posts.forEach(function(post) { %> 
+<h3><%= post.title %> </h3>
+<p><%= post.content.substring(0,100) + "..." %>
+<a href="/posts/<%= post.title %> ">Learn More</a>
+</p>
+
+<% }) %> 
+

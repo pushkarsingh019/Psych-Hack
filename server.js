@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
+const { Router } = require('express');
+const lodash = require('lodash');
 
 const app = express();
 const PORT = 3000;
@@ -19,6 +21,8 @@ let users  = [
     },
 ]
 
+let posts = [];
+
 // Functions
 
 function authenticate(username, password){
@@ -26,7 +30,7 @@ function authenticate(username, password){
     username = username.toLowerCase();
     // password = password.toLowerCase();
 
-    console.log("Entered details -->" + username + "password -->  " + password );
+    // console.log("Entered details -->" + username + "password -->  " + password );
 
     for(let index = 0; index<users.length; index++){
         if(users[index].user === username && users[index].password === password){
@@ -44,7 +48,7 @@ function authenticate(username, password){
 // routing
 
 app.get('/', function(req, res){
-    res.render('home')
+    res.render('home', {posts : posts});
 })
 
 app.get('/login', function(req, res){
@@ -56,11 +60,33 @@ app.get('/signup', function(req,res){
 })
 
 app.get('/dashboard', function(req, res){
-    res.render('dashboard');
+    res.render('dashboard', {posts : posts});
 })
 
 app.get('/fail', function(req,res){
     res.render('fail');
+})
+
+app.get('/compose', function(req,res){
+    res.render('compose');
+})
+
+app.get('/posts/:entryTitle', function(req, res){
+    let requestedTitle = req.params.entryTitle;
+    requestedTitle = String(lodash.lowerCase(requestedTitle));
+
+    posts.forEach(function(post) {
+        let storedTitle = post.title;
+        storedTitle = String(storedTitle);
+        storedTitle = String(lodash.lowerCase(storedTitle));
+
+        // console.log("Requested Title -->" + requestedTitle + " Stored Title --> " + storedTitle);
+
+        if(storedTitle === requestedTitle){
+            let postText = post.content;
+             res.render("post", {requestedTitle : requestedTitle , postText : postText, post : post});
+        }
+    })
 })
 
 // post methods
@@ -99,9 +125,30 @@ app.post('/signup', function(req,res){
         password : userPass
     })
 
-    console.log(users);
+    // console.log(users);
 
     res.render('auth');
 })
+
+app.post('/compose', function(req,res){
+    const postObj = JSON.parse(JSON.stringify(req.body));
+
+    let postTitle = postObj.title;
+    let postContent = postObj.post;
+
+    posts.push({
+        title : postTitle,
+        content : postContent
+    })
+
+    // console.log(posts);x
+    res.redirect('dashboard')
+})
+
+
+
+
+
+// Listen
 
 app.listen(PORT, console.log("Connected at Port " + PORT));
