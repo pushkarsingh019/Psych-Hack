@@ -23,6 +23,10 @@ let users  = [
 
 let posts = [];
 
+let postChoice = "";
+
+let stoicQuestion = "How can I rekindle my principles and start living today?";
+
 // Functions
 
 function authenticate(username, password){
@@ -68,7 +72,11 @@ app.get('/fail', function(req,res){
 })
 
 app.get('/compose', function(req,res){
-    res.render('compose');
+    res.render('compose', {postChoice : postChoice, stoicQuestion : stoicQuestion});
+})
+
+app.get('/choice', function(req, res){
+    res.render('choice')
 })
 
 app.get('/posts/:entryTitle', function(req, res){
@@ -143,6 +151,26 @@ app.post('/compose', function(req,res){
 
     // console.log(posts);x
     res.redirect('dashboard')
+})
+
+app.post('/morning', function(req, res){
+    postChoice = "morning"
+    res.redirect('compose')
+})
+
+app.post('/evening', function(req, res){
+    postChoice = "evening"
+    res.redirect('compose')
+})
+
+app.post('/free', function(req,res){
+    postChoice = "free"
+    res.redirect('compose');
+})
+
+app.post('/reflection', function(req,res){
+    postChoice = "question";
+    res.redirect('compose')
 })
 
 
