@@ -3,6 +3,10 @@
 <br>
 <% if (postChoice == "morning") { %>
     <form action="/compose" method="post">
+        
+        <input type="text" placeholder="Enter date" name="day"  />
+        <br>
+        <br>
         <label for="">I am gratefull for</label>
         <br>
         <input name="gratitude" id="" cols="30" rows="10"></input>
@@ -26,12 +30,12 @@
     <form action="/compose" method="post">
         <label for="">Three amazing things that happened today</label>
         <br>
-        <textarea name="three-amazing" id="" cols="30" rows="3"></textarea>
+        <textarea name="threeAmazingthings" id="" cols="30" rows="3"></textarea>
         <br>
         <br>
         <label for="">How could I have made today even better? </label>
         <br>
-        <textarea name="beter-day" id="" cols="30" rows="5"></textarea>
+        <textarea name="betterDay" id="" cols="30" rows="5"></textarea>
         <br>
         <br>
         <br>
@@ -56,27 +60,8 @@
         <label for=""><%= stoicQuestion %> </label>
         <br>
         <br>
-        <textarea name="stoic-answer" id="" cols="30" rows="10"></textarea>
+        <textarea name="stoicAnswer" id="" cols="30" rows="10"></textarea>
+        <br>
+        <button type="submit">Post</button>
     </form>
 <% } %>
-
-
-
-
-
-
-
-
-
-<!-- <form action="/compose" method="post">
-    <label for="">Title</label>
-    <br>
-    <input type="text" name="title" id="">
-    <br>
-    <br>
-    <textarea name="post" id="" cols="30" rows="10" placeholder="Start typing here..." >
-
-    </textarea>
-    <br>
-    <button type="submit">Post</button>
-</form> -->

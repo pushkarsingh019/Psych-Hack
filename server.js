@@ -22,6 +22,9 @@ let users  = [
 ]
 
 let posts = [];
+let morningReflection = [];
+let eveningReflection = [];
+let questionReflection = [];
 
 let postChoice = "";
 
@@ -141,13 +144,68 @@ app.post('/signup', function(req,res){
 app.post('/compose', function(req,res){
     const postObj = JSON.parse(JSON.stringify(req.body));
 
-    let postTitle = postObj.title;
-    let postContent = postObj.post;
+    // console.log(postObj);
 
-    posts.push({
-        title : postTitle,
-        content : postContent
-    })
+    switch(postChoice){
+
+        case "morning":
+            // console.log("morning summary")
+
+            let postDay = postObj.day;
+            let gratitudeAnswer = postObj.gratitude;
+            let greatDay = postObj.great;
+            let highlightDay = postObj.highlight;
+
+            morningReflection.push({
+                day : postDay,
+                gratitude : gratitudeAnswer,
+                great : greatDay,
+                highlight : highlightDay
+            })
+            console.log(morningReflection);
+            break;
+
+
+        case "evening":
+            // console.log("evening summary")
+            let threeAmazing = postObj.threeAmazingthings;
+            let betterDay = postObj.betterDay;
+
+            eveningReflection.push({
+                threeThings : threeAmazing,
+                betterDay : postObj.betterDay
+            })
+
+            console.log(eveningReflection)
+
+            break;
+        case "free":
+            // console.log("free writing");
+
+            let postTitle = postObj.title;
+            let postContent = postObj.post;
+
+            posts.push({
+                title : postTitle,
+                content : postContent
+            })
+            break;
+        case "question":
+            // console.log("Stoic relfection question");
+
+            let stoicAnswer = postObj.stoicAnswer;
+
+            questionReflection.push({
+                question: stoicQuestion,
+                answer : stoicAnswer
+            })
+
+            console.log(questionReflection);
+
+            break;
+        default:
+            console.log("something went wrong")
+    }
 
     // console.log(posts);x
     res.redirect('dashboard')
