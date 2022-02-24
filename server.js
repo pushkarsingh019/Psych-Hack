@@ -22,6 +22,13 @@ let users  = [
 ]
 
 let posts = [];
+let morningReflection = [];
+let eveningReflection = [];
+let questionReflection = [];
+
+let postChoice = "";
+
+let stoicQuestion = "How can I rekindle my principles and start living today?";
 
 // Functions
 
@@ -68,7 +75,11 @@ app.get('/fail', function(req,res){
 })
 
 app.get('/compose', function(req,res){
-    res.render('compose');
+    res.render('compose', {postChoice : postChoice, stoicQuestion : stoicQuestion});
+})
+
+app.get('/choice', function(req, res){
+    res.render('choice')
 })
 
 app.get('/posts/:entryTitle', function(req, res){
@@ -133,16 +144,91 @@ app.post('/signup', function(req,res){
 app.post('/compose', function(req,res){
     const postObj = JSON.parse(JSON.stringify(req.body));
 
-    let postTitle = postObj.title;
-    let postContent = postObj.post;
+    // console.log(postObj);
 
-    posts.push({
-        title : postTitle,
-        content : postContent
-    })
+    switch(postChoice){
+
+        case "morning":
+            // console.log("morning summary")
+
+            let postDay = postObj.day;
+            let gratitudeAnswer = postObj.gratitude;
+            let greatDay = postObj.great;
+            let highlightDay = postObj.highlight;
+
+            morningReflection.push({
+                day : postDay,
+                gratitude : gratitudeAnswer,
+                great : greatDay,
+                highlight : highlightDay
+            })
+            console.log(morningReflection);
+            break;
+
+
+        case "evening":
+            // console.log("evening summary")
+            let threeAmazing = postObj.threeAmazingthings;
+            let betterDay = postObj.betterDay;
+
+            eveningReflection.push({
+                threeThings : threeAmazing,
+                betterDay : postObj.betterDay
+            })
+
+            console.log(eveningReflection)
+
+            break;
+        case "free":
+            // console.log("free writing");
+
+            let postTitle = postObj.title;
+            let postContent = postObj.post;
+
+            posts.push({
+                title : postTitle,
+                content : postContent
+            })
+            break;
+        case "question":
+            // console.log("Stoic relfection question");
+
+            let stoicAnswer = postObj.stoicAnswer;
+
+            questionReflection.push({
+                question: stoicQuestion,
+                answer : stoicAnswer
+            })
+
+            console.log(questionReflection);
+
+            break;
+        default:
+            console.log("something went wrong")
+    }
 
     // console.log(posts);x
     res.redirect('dashboard')
+})
+
+app.post('/morning', function(req, res){
+    postChoice = "morning"
+    res.redirect('compose')
+})
+
+app.post('/evening', function(req, res){
+    postChoice = "evening"
+    res.redirect('compose')
+})
+
+app.post('/free', function(req,res){
+    postChoice = "free"
+    res.redirect('compose');
+})
+
+app.post('/reflection', function(req,res){
+    postChoice = "question";
+    res.redirect('compose')
 })
 
 

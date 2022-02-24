@@ -1,15 +1,67 @@
 <%- include('partials/header') %>
 <h3>Compose</h3>
 <br>
-<form action="/compose" method="post">
-    <label for="">Title</label>
-    <br>
-    <input type="text" name="title" id="">
-    <br>
-    <br>
-    <textarea name="post" id="" cols="30" rows="10" placeholder="Start typing here..." >
-
-    </textarea>
-    <br>
-    <button type="submit">Post</button>
-</form>
+<% if (postChoice == "morning") { %>
+    <form action="/compose" method="post">
+        
+        <input type="text" placeholder="Enter date" name="day"  />
+        <br>
+        <br>
+        <label for="">I am gratefull for</label>
+        <br>
+        <input name="gratitude" id="" cols="30" rows="10"></input>
+        <br>
+        <br>
+        <label for="">What would make today great?</label>
+        <br>
+        <input name="great" id="" cols="30" rows="10"></input>
+        <br>
+        <br>
+        <label for="">Daily Highlight Task</label>
+        <br>
+        <input name="highlight" id="" cols="30" rows="10"></input>
+        <br>
+        <br>
+        <br>
+        <button type="submit">Post</button>
+    </form>
+<% } %>
+<% if (postChoice == "evening") { %>
+    <form action="/compose" method="post">
+        <label for="">Three amazing things that happened today</label>
+        <br>
+        <textarea name="threeAmazingthings" id="" cols="30" rows="3"></textarea>
+        <br>
+        <br>
+        <label for="">How could I have made today even better? </label>
+        <br>
+        <textarea name="betterDay" id="" cols="30" rows="5"></textarea>
+        <br>
+        <br>
+        <br>
+        <button type="submit">Post</button>
+    </form>
+<% } %>
+<% if (postChoice == "free") { %>
+    <form action="/compose" method="post">
+        <label for="">Title</label>
+        <br>
+        <input type="text" name="title" id="">
+        <br>
+        <br>
+        <textarea name="post" id="" cols="30" rows="10" placeholder="Start typing here..." >
+    
+        </textarea>
+        <br>
+        <button type="submit">Post</button>
+<% } %>
+<% if (postChoice == "question") { %>
+    <form action="/compose" method="post">
+        <label for=""><%= stoicQuestion %> </label>
+        <br>
+        <br>
+        <textarea name="stoicAnswer" id="" cols="30" rows="10"></textarea>
+        <br>
+        <button type="submit">Post</button>
+    </form>
+<% } %>
