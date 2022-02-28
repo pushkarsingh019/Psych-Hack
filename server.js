@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const { Router } = require('express');
 const lodash = require('lodash');
+const req = require('express/lib/request');
 
 const app = express();
 const PORT = 3000;
@@ -27,6 +28,7 @@ let eveningReflection = [];
 let questionReflection = [];
 
 let postChoice = "";
+let displayPostChoice = "";
 
 let stoicQuestion = "How can I rekindle my principles and start living today?";
 
@@ -67,7 +69,13 @@ app.get('/signup', function(req,res){
 })
 
 app.get('/dashboard', function(req, res){
-    res.render('dashboard', {posts : posts});
+    res.render('dashboard', {
+        displayPostChoice : displayPostChoice,
+        posts : posts,
+        morningReflection : morningReflection,
+        eveningReflection : eveningReflection,
+        questionReflection : questionReflection,
+    });
 })
 
 app.get('/fail', function(req,res){
@@ -164,7 +172,7 @@ app.post('/compose', function(req,res){
                 great : greatDay,
                 highlight : highlightDay
             })
-            console.log(morningReflection);
+            // console.log(morningReflection);
             break;
 
 
@@ -178,7 +186,7 @@ app.post('/compose', function(req,res){
                 betterDay :  postObj.betterDay
             })
 
-            console.log(eveningReflection)
+            // console.log(eveningReflection)
 
             break;
         case "free":
@@ -202,7 +210,7 @@ app.post('/compose', function(req,res){
                 answer : stoicAnswer
             })
 
-            console.log(questionReflection);
+            // console.log(questionReflection);
 
             break;
         default:
@@ -233,10 +241,33 @@ app.post('/reflection', function(req,res){
     res.redirect('compose')
 })
 
+app.post('/morningPosts', function(req, res){
+    displayPostChoice = "morning"
+    res.redirect('dashboard')
+})
+
+app.post('/eveningPosts', function(req,res){
+    displayPostChoice = "evening";
+    res.redirect("dashboard")
+})
+
+app.post('/freePosts', function(req, res){
+    displayPostChoice = "journal";
+    res.redirect('dashboard')
+})
+
+app.post('/reflectionPosts', function(req, res){
+    displayPostChoice = "reflection";
+    res.redirect('dashboard');
+})
+
 
 
 
 
 // Listen
 
-app.listen(PORT, console.log("Connected at Port " + PORT));
+app.listen(PORT, function(){
+    console.log("Go for section 7 of 4.100")
+    // console.log("yor")
+});
