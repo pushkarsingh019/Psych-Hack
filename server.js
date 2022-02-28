@@ -152,8 +152,10 @@ app.post('/signup', function(req,res){
 app.post('/compose', function(req,res){
     const postObj = JSON.parse(JSON.stringify(req.body));
 
-    // console.log(postObj);
+    let postTitle = postObj.title;
+    let postContent = postObj.post;
 
+    // console.log(postObj);
     switch(postChoice){
 
         case "morning":
@@ -181,7 +183,7 @@ app.post('/compose', function(req,res){
 
             eveningReflection.push({
                 threeThings : threeAmazing,
-                betterDay : postObj.betterDay
+                betterDay :  postObj.betterDay
             })
 
             // console.log(eveningReflection)
@@ -191,7 +193,7 @@ app.post('/compose', function(req,res){
             // console.log("free writing");
 
             let postTitle = postObj.title;
-            let postContent = postObj.post;
+            let postContent = postObj.post
 
             posts.push({
                 title : postTitle,
