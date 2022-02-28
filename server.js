@@ -90,6 +90,8 @@ app.get('/choice', function(req, res){
     res.render('choice')
 })
 
+// Learn more post routing functions 
+
 app.get('/posts/:entryTitle', function(req, res){
     let requestedTitle = req.params.entryTitle;
     requestedTitle = String(lodash.lowerCase(requestedTitle));
@@ -104,6 +106,41 @@ app.get('/posts/:entryTitle', function(req, res){
         if(storedTitle === requestedTitle){
             let postText = post.content;
              res.render("post", {requestedTitle : requestedTitle , postText : postText, post : post});
+        }
+    })
+})
+
+app.get('/morning-reflection/:reflectionDay', function(req, res){
+    let morningReflectionDay = req.params.reflectionDay;
+    morningReflectionDay = String(lodash.lowerCase(morningReflectionDay));
+
+    morningReflection.forEach(function(reflection){
+        let storedReflectionDay = reflection.day;
+
+        storedReflectionDay = String(lodash.lowerCase(storedReflectionDay));
+
+        if(storedReflectionDay == morningReflectionDay ){
+            res.render("mReflection", {reflection : reflection} )
+        }
+
+    
+
+    })
+
+})
+
+app.get('/evening-reflection/:eReflectionDay', function(req, res){
+    let eveningReflectionDay = req.params.eReflectionDay;
+
+    eveningReflectionDay = String(lodash.lowerCase(eveningReflection));
+
+    eveningReflection.forEach(function(reflection){
+        let storedEReflectionTitle = reflection.day;
+
+        storedEReflectionTitle = String(lodash.lowerCase(storedEReflectionTitle));
+
+        if(storedEReflectionTitle == eveningReflectionDay){
+            res.render('eReflection', {reflection : reflection});
         }
     })
 })
