@@ -30,7 +30,7 @@
  <% morningReflection.forEach(reflection => { %>
     <h3><%= reflection.day %> </h3>
     <p><%= reflection.highlight %>
-    <a href="/posts/<% reflection.day %> ">read more</a>
+    <a href="/morning-reflection/<%= reflection.day %> ">read more</a>
     </p>
  <%}); %> 
 <% } %>
@@ -40,7 +40,7 @@
     <% eveningReflection.forEach(reflection => { %>
        <h3><%= reflection.day %> </h3>
        <p><%= reflection.betterDay %> 
-        <a href="/posts/<% reflection.day %> ">read more</a>
+        <a href="/evening-reflection/<%= reflection.day %>">Learn more </a>
     </p>
     <%}); %> 
    <% } %>
@@ -50,7 +50,7 @@
     <% posts.forEach(post => { %>
        <h3><%= post.title %> </h3>
        <p><%= post.content.substring(0,100) + "..." %>
-    <a href="/posts/<% post.title %>">Learn more</a> </p>
+    <a href="/posts/<%= post.title %> ">Learn more</a> </p>
     <%}); %> 
    <% } %>
 
@@ -59,7 +59,7 @@
     <% questionReflection.forEach(reflection => { %>
        <h3><%= reflection.question %> </h3>
        <p><%= reflection.answer %> 
-        <a href="/posts/<% reflection.day %> ">read more</a>
+        <a href="/stoic-reflection/<%= reflection.question%> ">read more</a>
     </p>
     <%}); %> 
    <% } %>

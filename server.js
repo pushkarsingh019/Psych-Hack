@@ -90,6 +90,8 @@ app.get('/choice', function(req, res){
     res.render('choice')
 })
 
+// Learn more post routing functions 
+
 app.get('/posts/:entryTitle', function(req, res){
     let requestedTitle = req.params.entryTitle;
     requestedTitle = String(lodash.lowerCase(requestedTitle));
@@ -107,6 +109,68 @@ app.get('/posts/:entryTitle', function(req, res){
         }
     })
 })
+
+app.get('/morning-reflection/:reflectionDay', function(req, res){
+    let morningReflectionDay = req.params.reflectionDay;
+    morningReflectionDay = String(lodash.lowerCase(morningReflectionDay));
+    // console.log("tpyed morning reflection title ->" + morningReflectionDay);
+
+    morningReflection.forEach(function(reflection){
+
+        let storedReflectionDay = reflection.day;
+
+        storedReflectionDay = String(lodash.lowerCase(storedReflectionDay));
+
+        if(storedReflectionDay == morningReflectionDay ){
+            res.render("mReflection", {reflection : reflection} )
+        }
+
+    
+
+    })
+
+})
+
+app.get('/evening-reflection/:eReflectionDay', function(req, res){
+    // res.send("routing is reaching the get server");
+
+    let reflectionTitle  = req.params.eReflectionDay;
+    reflectionTitle = String(lodash.lowerCase(reflectionTitle));
+
+    // console.log("Typed title --> " + reflectionTitle);
+
+    eveningReflection.forEach(function(reflection){
+        let storedEveningReflection = reflection.day;
+        storedEveningReflection = String(lodash.lowerCase(storedEveningReflection));
+        // console.log("Stored title --> " + storedEveningReflection);
+
+        if(storedEveningReflection == reflectionTitle){
+            res.render('eReflection', {reflection : reflection});
+        }
+    })
+
+})
+
+app.get('/stoic-reflection/:question', function(req, res){
+    let stoicQuestion = req.params.question;
+    stoicQuestion = String(lodash.lowerCase(stoicQuestion));
+
+    questionReflection.forEach(function(stoicReflection){
+        let storedStoicQuestion = stoicReflection.question;
+        storedStoicQuestion = String(lodash.lowerCase(storedStoicQuestion));
+
+        if(stoicQuestion == storedStoicQuestion){
+            res.render('questionAnswer', {stoicReflection : stoicReflection});
+        }
+        else{
+            res.render('404');
+        }
+    })
+
+    // res.send("route is working");
+
+})
+
 
 // post methods
 
@@ -178,10 +242,12 @@ app.post('/compose', function(req,res){
 
         case "evening":
             // console.log("evening summary")
+            let day = postObj.day;
             let threeAmazing = postObj.threeAmazingthings;
             let betterDay = postObj.betterDay;
 
             eveningReflection.push({
+                day : day,
                 threeThings : threeAmazing,
                 betterDay :  postObj.betterDay
             })
@@ -268,6 +334,5 @@ app.post('/reflectionPosts', function(req, res){
 // Listen
 
 app.listen(PORT, function(){
-    console.log("Go for section 7 of 4.100")
-    // console.log("yor")
+    console.log("4.100 we are go for launch" + "\n...\n...\n..." + "\nGo for section 7 of 4.100");
 });
