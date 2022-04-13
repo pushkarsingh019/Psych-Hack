@@ -1,10 +1,14 @@
 <%- include('partials/header') %>
 
-<h3>Signup to your account</h3>
-<form action="/signup" method="post">
-    <input type="email" name="email" id="" placeholder="enter user email"  />
-    <br>
-    <input type="password" name="password" id=""  />
-    <br>
-    <button type="submit">Sign up</button>
-</form>
+<div class="container">
+    <h2>Signup to your account</h2>
+    <div class="auth-form">
+        <form action="/signup" method="post">
+            <input type="email" name="email" id="" placeholder="Enter User Email"  />
+            <br>
+            <input placeholder="Set a Password" type="password" name="password" id=""  />
+            <br>
+            <button class="primary-button" type="submit">Sign up</button>
+        </form>
+    </div>
+</div>
