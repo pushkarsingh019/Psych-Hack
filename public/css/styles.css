@@ -1,7 +1,99 @@
-body {
-    text-align: center;
+:root {
+    --primary-color : #113F67;
+    --second-color : #34699A;
+    --third-color : #408AB4;
+    --fourth-color : #65C6C4;
+}
 
+* {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    /* border: 2px solid red; */
 }
-.hero {
-    color: blue;
+/* Navbar */
+
+.navbar {
+    background-color: var(--second-color);
+    color: whitesmoke;
+    padding: 20px 22px;
 }
+
+
+
+
+
+
+/* Home Page */
+
+
+.home-links {
+    display: inline-block;
+}
+
+.hero-image {
+    margin: 30px;
+    height: 300px;
+    width: auto;
+}
+
+.primary-button {
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    padding: 12px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 12px;
+    margin-right: 20px;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.secondary-button {
+    padding : 10px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 20px;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border: 3px solid var(--primary-color);
+}
+
+/* Hover effects */
+.primary-button:hover {
+    color: var(--fourth-color);
+    font-size: 18px;
+}
+
+.secondary-button:hover {
+    border: 3px solid var(--third-color);
+    font-size: 18px;
+}
+
+/* Signup Page */
+.container {
+    margin: 10px;
+    padding: 10px 12px;
+}
+
+.auth-form {
+    margin: 10px;
+}
+
+input {
+    width: 60%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+
