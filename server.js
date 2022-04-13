@@ -32,6 +32,8 @@ let displayPostChoice = "";
 
 let stoicQuestion = "How can I rekindle my principles and start living today?";
 
+let loginFlag = 0;
+
 // Functions
 
 function authenticate(username, password){
@@ -69,13 +71,18 @@ app.get('/signup', function(req,res){
 })
 
 app.get('/dashboard', function(req, res){
-    res.render('dashboard', {
-        displayPostChoice : displayPostChoice,
-        posts : posts,
-        morningReflection : morningReflection,
-        eveningReflection : eveningReflection,
-        questionReflection : questionReflection,
-    });
+    if(loginFlag === 1){
+        res.render('dashboard', {
+            displayPostChoice : displayPostChoice,
+            posts : posts,
+            morningReflection : morningReflection,
+            eveningReflection : eveningReflection,
+            questionReflection : questionReflection,
+        })
+    }
+    else {
+        res.render('fail');
+    }
 })
 
 app.get('/fail', function(req,res){
@@ -184,9 +191,11 @@ app.post('/login', function(req, res){
 
     if(auth === 1){
         res.redirect('dashboard')
+        loginFlag = 1
     }
     else if(auth === 0){
         res.redirect('fail')
+        loginFlag = 0;
     }
     else{
         res.send("something went wrong");
