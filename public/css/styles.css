@@ -91,6 +91,40 @@ input {
     margin-bottom: 10px;
 }
 
+/* Footer Section */
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    padding: 20px 15px;
+    background-color: var(--second-color);
+    color: whitesmoke;
+}
+.promotion-text {
+    /* display: inline-block; */
+    /* text-align: right; */
+    color: whitesmoke;
+}
+.personal-link {
+    text-decoration: none;
+    color: white;
+}
+.personal-link:hover{
+    text-decoration: underline;
+}
+.copyright {
+    /* text-align: left; */
+    /* display: inline-block; */
+}
+.footer-text .copyright {
+    text-align: left;
+}
+.footer-text {
+    width: 100%;
+}
+
 
 
 
